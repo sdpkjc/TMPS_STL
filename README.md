@@ -29,5 +29,7 @@ Learning SGI-STL,reinvent the wheel.
 * Algorithms
 
 ## Progress
+* Test
+  * Allocator_test model
 * Allocator
   * simple_Allocator
