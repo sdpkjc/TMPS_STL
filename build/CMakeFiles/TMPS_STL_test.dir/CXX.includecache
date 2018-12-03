@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/zhaoyanxiao/dev/devSTL/allocator.cpp
+allocator.h
+/Users/zhaoyanxiao/dev/devSTL/allocator.h
+
+/Users/zhaoyanxiao/dev/devSTL/allocator.h
+new
+-
+cstddef
+-
+cstdlib
+-
+climits
+-
+iostream
+-
+
+/Users/zhaoyanxiao/dev/devSTL/test.cpp
+iostream
+-
+allocator.h
+/Users/zhaoyanxiao/dev/devSTL/allocator.h
+memory
+-
+vector
+-
+

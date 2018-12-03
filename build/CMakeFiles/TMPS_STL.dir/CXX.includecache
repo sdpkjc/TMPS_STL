@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/zhaoyanxiao/dev/devSTL/a.cpp
+a.h
+/Users/zhaoyanxiao/dev/devSTL/a.h
+iostream
+-
+
+/Users/zhaoyanxiao/dev/devSTL/a.h
+
+/Users/zhaoyanxiao/dev/devSTL/test.cpp
+a.h
+/Users/zhaoyanxiao/dev/devSTL/a.h
+

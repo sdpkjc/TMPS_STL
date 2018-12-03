@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/TMPS_STL.dir/test.cpp.o CMakeFiles/TMPS_STL.dir/a.cpp.o  -o TMPS_STL 
