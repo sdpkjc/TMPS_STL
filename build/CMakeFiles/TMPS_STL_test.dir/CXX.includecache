@@ -6,20 +6,20 @@
 
 #IncludeRegexTransform: 
 
-/Users/zhaoyanxiao/dev/devSTL/allocator.cpp
-allocator.h
-/Users/zhaoyanxiao/dev/devSTL/allocator.h
+/Users/zhaoyanxiao/dev/devSTL/alloc.cpp
+alloc.h
+/Users/zhaoyanxiao/dev/devSTL/alloc.h
+
+/Users/zhaoyanxiao/dev/devSTL/alloc.h
+cstdlib
+-
 
 /Users/zhaoyanxiao/dev/devSTL/allocator.h
+alloc.h
+/Users/zhaoyanxiao/dev/devSTL/alloc.h
 new
 -
 cstddef
--
-cstdlib
--
-climits
--
-iostream
 -
 
 /Users/zhaoyanxiao/dev/devSTL/test.cpp

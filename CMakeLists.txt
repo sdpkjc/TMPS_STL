@@ -7,7 +7,7 @@ add_definitions("-Wall -pedantic -std=c++11")
 
 add_executable(TMPS_STL_test
     test.cpp
-    allocator.cpp
+    alloc.cpp
 )
 # add_library(a a.cpp)
 # add_executable(a_test test.cpp)

@@ -123,32 +123,32 @@ TMPS_STL_test/fast:
 	$(MAKE) -f CMakeFiles/TMPS_STL_test.dir/build.make CMakeFiles/TMPS_STL_test.dir/build
 .PHONY : TMPS_STL_test/fast
 
-allocator.o: allocator.cpp.o
+alloc.o: alloc.cpp.o
 
-.PHONY : allocator.o
+.PHONY : alloc.o
 
 # target to build an object file
-allocator.cpp.o:
-	$(MAKE) -f CMakeFiles/TMPS_STL_test.dir/build.make CMakeFiles/TMPS_STL_test.dir/allocator.cpp.o
-.PHONY : allocator.cpp.o
+alloc.cpp.o:
+	$(MAKE) -f CMakeFiles/TMPS_STL_test.dir/build.make CMakeFiles/TMPS_STL_test.dir/alloc.cpp.o
+.PHONY : alloc.cpp.o
 
-allocator.i: allocator.cpp.i
+alloc.i: alloc.cpp.i
 
-.PHONY : allocator.i
+.PHONY : alloc.i
 
 # target to preprocess a source file
-allocator.cpp.i:
-	$(MAKE) -f CMakeFiles/TMPS_STL_test.dir/build.make CMakeFiles/TMPS_STL_test.dir/allocator.cpp.i
-.PHONY : allocator.cpp.i
+alloc.cpp.i:
+	$(MAKE) -f CMakeFiles/TMPS_STL_test.dir/build.make CMakeFiles/TMPS_STL_test.dir/alloc.cpp.i
+.PHONY : alloc.cpp.i
 
-allocator.s: allocator.cpp.s
+alloc.s: alloc.cpp.s
 
-.PHONY : allocator.s
+.PHONY : alloc.s
 
 # target to generate assembly for a file
-allocator.cpp.s:
-	$(MAKE) -f CMakeFiles/TMPS_STL_test.dir/build.make CMakeFiles/TMPS_STL_test.dir/allocator.cpp.s
-.PHONY : allocator.cpp.s
+alloc.cpp.s:
+	$(MAKE) -f CMakeFiles/TMPS_STL_test.dir/build.make CMakeFiles/TMPS_STL_test.dir/alloc.cpp.s
+.PHONY : alloc.cpp.s
 
 test.o: test.cpp.o
 
@@ -186,9 +186,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... TMPS_STL_test"
-	@echo "... allocator.o"
-	@echo "... allocator.i"
-	@echo "... allocator.s"
+	@echo "... alloc.o"
+	@echo "... alloc.i"
+	@echo "... alloc.s"
 	@echo "... test.o"
 	@echo "... test.i"
 	@echo "... test.s"

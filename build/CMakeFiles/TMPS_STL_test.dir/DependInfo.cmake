@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/zhaoyanxiao/dev/devSTL/allocator.cpp" "/Users/zhaoyanxiao/dev/devSTL/build/CMakeFiles/TMPS_STL_test.dir/allocator.cpp.o"
+  "/Users/zhaoyanxiao/dev/devSTL/alloc.cpp" "/Users/zhaoyanxiao/dev/devSTL/build/CMakeFiles/TMPS_STL_test.dir/alloc.cpp.o"
   "/Users/zhaoyanxiao/dev/devSTL/test.cpp" "/Users/zhaoyanxiao/dev/devSTL/build/CMakeFiles/TMPS_STL_test.dir/test.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")

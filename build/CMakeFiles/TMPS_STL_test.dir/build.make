@@ -70,29 +70,29 @@ CMakeFiles/TMPS_STL_test.dir/test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TMPS_STL_test.dir/test.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/zhaoyanxiao/dev/devSTL/test.cpp -o CMakeFiles/TMPS_STL_test.dir/test.cpp.s
 
-CMakeFiles/TMPS_STL_test.dir/allocator.cpp.o: CMakeFiles/TMPS_STL_test.dir/flags.make
-CMakeFiles/TMPS_STL_test.dir/allocator.cpp.o: ../allocator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/zhaoyanxiao/dev/devSTL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/TMPS_STL_test.dir/allocator.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TMPS_STL_test.dir/allocator.cpp.o -c /Users/zhaoyanxiao/dev/devSTL/allocator.cpp
+CMakeFiles/TMPS_STL_test.dir/alloc.cpp.o: CMakeFiles/TMPS_STL_test.dir/flags.make
+CMakeFiles/TMPS_STL_test.dir/alloc.cpp.o: ../alloc.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/zhaoyanxiao/dev/devSTL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/TMPS_STL_test.dir/alloc.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TMPS_STL_test.dir/alloc.cpp.o -c /Users/zhaoyanxiao/dev/devSTL/alloc.cpp
 
-CMakeFiles/TMPS_STL_test.dir/allocator.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TMPS_STL_test.dir/allocator.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/zhaoyanxiao/dev/devSTL/allocator.cpp > CMakeFiles/TMPS_STL_test.dir/allocator.cpp.i
+CMakeFiles/TMPS_STL_test.dir/alloc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TMPS_STL_test.dir/alloc.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/zhaoyanxiao/dev/devSTL/alloc.cpp > CMakeFiles/TMPS_STL_test.dir/alloc.cpp.i
 
-CMakeFiles/TMPS_STL_test.dir/allocator.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TMPS_STL_test.dir/allocator.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/zhaoyanxiao/dev/devSTL/allocator.cpp -o CMakeFiles/TMPS_STL_test.dir/allocator.cpp.s
+CMakeFiles/TMPS_STL_test.dir/alloc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TMPS_STL_test.dir/alloc.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/zhaoyanxiao/dev/devSTL/alloc.cpp -o CMakeFiles/TMPS_STL_test.dir/alloc.cpp.s
 
 # Object files for target TMPS_STL_test
 TMPS_STL_test_OBJECTS = \
 "CMakeFiles/TMPS_STL_test.dir/test.cpp.o" \
-"CMakeFiles/TMPS_STL_test.dir/allocator.cpp.o"
+"CMakeFiles/TMPS_STL_test.dir/alloc.cpp.o"
 
 # External object files for target TMPS_STL_test
 TMPS_STL_test_EXTERNAL_OBJECTS =
 
 TMPS_STL_test: CMakeFiles/TMPS_STL_test.dir/test.cpp.o
-TMPS_STL_test: CMakeFiles/TMPS_STL_test.dir/allocator.cpp.o
+TMPS_STL_test: CMakeFiles/TMPS_STL_test.dir/alloc.cpp.o
 TMPS_STL_test: CMakeFiles/TMPS_STL_test.dir/build.make
 TMPS_STL_test: CMakeFiles/TMPS_STL_test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/zhaoyanxiao/dev/devSTL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable TMPS_STL_test"

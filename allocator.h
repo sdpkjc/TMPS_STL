@@ -1,96 +1,55 @@
 #ifndef __ALLOCATOR_H__
 #define __ALLOCATOR_H__
+
+#include "alloc.h"
+
 #include <new>      // placement new
 #include <cstddef>  // prtdiff_t, size_t
-#include <cstdlib>  // exit()
-#include <climits>  // UINT_MAX
-#include <iostream> // cerr
 
 namespace TMPS_STL{
+	template<class T>
+	class allocator{
+	public:
+		typedef T			value_type;
+		typedef T*			pointer;
+		typedef const T*	const_pointer;
+		typedef T&			reference;
+		typedef const T&	const_reference;
+		typedef size_t		size_type;
+		typedef ptrdiff_t	difference_type;
+	public:
+		static value_type *allocate(){
+			return static_cast<pointer>(alloc::allocate(sizeof(value_type)));
+		}
+		static pointer allocate(size_type n){
+			if (0 == n) return 0;
+			return static_cast<pointer>(alloc::allocate(sizeof(value_type) * n));
+		}
 
-    template <class T>
-    inline T* _allocate(ptrdiff_t size, T*)
-    {
-        std::set_new_handler(0);
+		static void deallocate(pointer ptr){
+			alloc::deallocate(static_cast<void *>(ptr), sizeof(value_type));
+		}
+		static void deallocate(pointer ptr, size_type n){
+			if (0 == n) return;
+			alloc::deallocate(static_cast<void *>(ptr), sizeof(value_type) * n);
+		}
 
-        T* tmp = (T*)(::operator new((size_t)(size * sizeof(T))));
-        if(tmp == 0){
-            std::cerr << "out of memory" << std::endl;
-            exit(1);
-        }
-        return tmp;
-    }
+		static void construct(pointer ptr){
+			new(ptr)value_type();
+		}
+		static void construct(pointer ptr, const_reference value){
+			new(ptr)value_type(value);
+		}
 
-    template <class T>
-    inline void _deallocate(T* buffer)
-    {
-        ::operator delete(buffer);
-    }
-
-    template <class T1, class T2>
-    inline void _construct(T1* p, const T2& value){
-        new(p) T1(value);
-    }
-
-    template <class T>
-    inline void _destroy(T* ptr)
-    {
-        ptr->~T();
-    }
-
-    template<class T>
-    struct allocator{
-        typedef T           value_type;
-        typedef T*          pointer;
-        typedef const T*    const_pointer;
-        typedef T&          reference;
-        typedef const T&    const_reference;
-        typedef size_t      size_type;
-        typedef ptrdiff_t   difference_type;
-        
-        template <class U>
-        struct rebind
-        {
-            typedef allocator<U> other;
-        };
-
-        pointer allocate(size_type n, const void* hint = 0)
-        {
-            return _allocate((difference_type)n, (pointer)0);
-        }
-
-        void deallocate(pointer p, size_type n)
-        {
-            _deallocate(p);
-        }
-        void construct(pointer p, const T& value)
-        {
-            _construct(p, value);
-        }
-
-        void destroy(pointer p) 
-        { 
-            _destroy(p); 
-        }
-
-        pointer address(reference x) 
-        {
-            return (pointer)&x;
-        }
-
-        const_pointer const_adress(const_reference x)
-        {
-            return (const_pointer)&x;
-        }
-
-        size_type max_size() const
-        {
-            return size_type(UINT_MAX/sizeof(T));
-        }
-
-        
-    };
-
+		static void destroy(T *ptr){
+			ptr->~T();
+		}
+		static void destroy(pointer first, pointer last){
+			for ( ; first != last; ++first){
+				first->~value_type();
+			}
+		}
+	};
 }
 
 #endif /* __ALLOCATOR_H__ */
