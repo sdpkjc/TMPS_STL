@@ -31,9 +31,10 @@ Learning SGI-STL,reinvent the wheel.
 ## Progress
 
 * Test
-  * Allocator_test model
+  * allocator_test mod
 * Allocator
-  * simple_Allocator
+  * alloc
+  * allocator
 
 ## My test environment
 
