@@ -2,7 +2,7 @@
 
 Terrified Mortified Petrified Stupefied... STL
 
-Learning SGI-STL,reinvent the wheel.
+Learning STL,reinvent the wheel.
 
 ## Plan
 
