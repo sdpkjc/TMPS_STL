@@ -29,7 +29,14 @@ Learning SGI-STL,reinvent the wheel.
 * Algorithms
 
 ## Progress
+
 * Test
   * Allocator_test model
 * Allocator
   * simple_Allocator
+
+## My test environment
+
+* macOS Mojave 10.14 (18A391)
+* Apple LLVM version 10.0.0 (clang-1000.10.44.4)
+* GNU Make 3.81
