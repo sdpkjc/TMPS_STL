@@ -7,7 +7,7 @@
 #include <cstddef>  // prtdiff_t, size_t
 
 namespace TMPS_STL{
-	template<class T>
+	template<typename T>
 	class allocator{
 	public:
 		typedef T			value_type;
