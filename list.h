@@ -11,13 +11,13 @@ namespace TMPS{
     template<typename T>
     struct list_node{
         typedef list_node* pointer;
+        T data;
         pointer prev;
         pointer next;
-        T data;
 		list_node(const T& d, pointer p, pointer n):
 			data(d), prev(p), next(n){}
         list_node(){ prev = next = nullptr; }
-		list_node(const list_node& t):prev(t.prev),next(t.next),data(t.data){ }
+		list_node(const list_node& t):data(t.data),prev(t.prev),next(t.next){ }
     };
 
     template<typename T>
@@ -32,6 +32,10 @@ namespace TMPS{
         typedef list_node<T>* link_type;
 
         link_type node;
+
+		list_iterator(){}
+		list_iterator(link_type x):node(x){}
+		list_iterator(const list_iterator& x):node(x.node){}
 
         T& operator*() const { return (*node).data; }
         T* operator->() const { return &(operator*()); }
@@ -67,7 +71,7 @@ namespace TMPS{
 
 
 
-    template<typename T, typename Alloc = allocator<list_node<T> > >
+    template<typename T, typename Alloc = alloc >
     class list{
     protected:
         typedef list_node<T> list_node;
@@ -75,6 +79,8 @@ namespace TMPS{
         typedef list_node* link_type;
         typedef list_iterator<T> iterator;
 		typedef list_iterator<const T> const_iterator;
+
+		typedef allocator<list_node, Alloc> list_node_allocator;
 		// typedef reverse_iterator_t<iterator> reverse_iterator;
     protected:
         link_type node;
@@ -115,10 +121,9 @@ namespace TMPS{
 		~list(){
 			while(head != tail) {
 				iterator temp = head++;
-				Alloc::destroy(temp.node);
-				Alloc::deallocate(temp.node);
+				deleteNode(temp.node);
 			}
-			Alloc::deallocate(tail.node);
+			deleteNode(tail.node);
 		}
 
 		bool empty()const{ return head == tail; }
@@ -134,19 +139,44 @@ namespace TMPS{
 		reference back(){ return (tail.node->prev->data); }
 
 		void push_front(const value_type& val){
+			link_type t = newNode();
 			
+			t->data = val;
+			t->next = begin().node;
+			t->prev = end().node;
+			
+			begin().node->prev = t;
+			end().node->next = t;
+			
+			head.node = t;
 		}
 		
 		void pop_front(){
 			iterator p = head++;
-			head.node->prev = end();
+			head.node->prev = end().node;
 			tail.node->next = head.node;
 			deleteNode(p.node);
 		}
 
 
-		void push_back(const value_type& val);
-		void pop_back();
+		void push_back(const value_type& val){
+			if(begin() == end()){
+				push_front(val);
+			}else{
+				link_type t = newNode();
+
+				t->data = val;
+				t->next = end().node;
+				t->prev = end().node->prev;
+				
+				end().node->prev->next = t;
+				end().node->prev = t;
+			}
+		}
+		void pop_back(){
+			iterator p = tail--;
+			deleteNode(p.node);
+		}
 
 		iterator begin(){ return head; }
 		iterator end(){ return tail; }
@@ -157,22 +187,43 @@ namespace TMPS{
 
 		iterator insert(iterator position, const value_type& val)
 		{
+			iterator re;
 			if (position == begin()){
 				push_front(val);
-				return begin();
+				re = begin();
 			}else if (position == end()){
 				iterator ret = position;
 				push_back(val);
-				return ret;
+				re = ret;
+			}else{
+				link_type t = newNode();
+				t->data = val;
+				t->next = position.node;
+				t->prev = position.node->prev;
+				t->prev->next = t;
+				t->next->prev = t;
+				re = --position;
+			}
+
+			return re;
+		}
+		void insert(iterator position, size_type n, const value_type& val)
+		{
+			for( size_type i = 0; i < n; i++){
+				insert(position,val);
 			}
 		}
-		void insert(iterator position, size_type n, const value_type& val);
 		template <class InputIterator>
 		void insert(iterator position, InputIterator first, InputIterator last);
 		iterator erase(iterator position);
 		iterator erase(iterator first, iterator last);
 		void swap(list& x);
-		void clear();
+		void clear(){
+			while(head != tail){
+				iterator p = head++;
+				deleteNode(p.node);
+			}
+		}
 		void splice(iterator position, list& x);
 		void splice(iterator position, list& x, iterator i);
 		void splice(iterator position, list& x, iterator first, iterator last);
@@ -195,14 +246,15 @@ namespace TMPS{
 		void ctorAux(InputIterator first, InputIterator last, std::false_type);
 
 		link_type newNode(const T& val = T()){
-			link_type res = Alloc::allocate();
-			Alloc::construct(res, list_node(val, nullptr, nullptr));
+			link_type res = list_node_allocator::allocate();
+			list_node_allocator::construct(res, list_node(val, nullptr, nullptr));
 			return res;
 		}
+
 		void deleteNode(link_type p){
 			p->prev = p->next = nullptr;
-			Alloc::destroy(p);
-			Alloc::deallocate(p);
+			list_node_allocator::destroy(p);
+			list_node_allocator::deallocate(p);
 		}
 		void insert_aux(iterator position, size_type n, const T& val, std::true_type);
 		template<class InputIterator>

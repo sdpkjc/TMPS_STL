@@ -7,7 +7,7 @@
 #include <cstddef>  // prtdiff_t, size_t
 
 namespace TMPS{
-	template<typename T>
+	template<typename T, typename Alloc = alloc>
 	class allocator{
 	public:
 		typedef T			value_type;
@@ -19,19 +19,19 @@ namespace TMPS{
 		typedef ptrdiff_t	difference_type;
 	public:
 		static value_type *allocate(){
-			return static_cast<pointer>(alloc::allocate(sizeof(value_type)));
+			return static_cast<pointer>(Alloc::allocate(sizeof(value_type)));
 		}
 		static pointer allocate(size_type n){
 			if (0 == n) return 0;
-			return static_cast<pointer>(alloc::allocate(sizeof(value_type) * n));
+			return static_cast<pointer>(Alloc::allocate(sizeof(value_type) * n));
 		}
 
 		static void deallocate(pointer ptr){
-			alloc::deallocate(static_cast<void *>(ptr), sizeof(value_type));
+			Alloc::deallocate(static_cast<void *>(ptr), sizeof(value_type));
 		}
 		static void deallocate(pointer ptr, size_type n){
 			if (0 == n) return;
-			alloc::deallocate(static_cast<void *>(ptr), sizeof(value_type) * n);
+			Alloc::deallocate(static_cast<void *>(ptr), sizeof(value_type) * n);
 		}
 
 		static void construct(pointer ptr){
