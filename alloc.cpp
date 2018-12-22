@@ -1,6 +1,6 @@
 #include "alloc.h"
 
-namespace TMPS_STL{
+namespace TMPS{
 
 	char *alloc::start_free = 0;
 	char *alloc::end_free = 0;

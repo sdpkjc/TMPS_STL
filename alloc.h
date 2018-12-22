@@ -3,7 +3,7 @@
 
 #include <cstdlib>
 
-namespace TMPS_STL{
+namespace TMPS{
 	class alloc{
 	private:
 		enum EAlign{ ALIGN = 8};

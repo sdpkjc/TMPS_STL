@@ -6,5 +6,7 @@ CMakeFiles/TMPS_STL_test.dir/alloc.cpp.o: ../alloc.h
 
 CMakeFiles/TMPS_STL_test.dir/test.cpp.o: ../alloc.h
 CMakeFiles/TMPS_STL_test.dir/test.cpp.o: ../allocator.h
+CMakeFiles/TMPS_STL_test.dir/test.cpp.o: ../iterator.h
+CMakeFiles/TMPS_STL_test.dir/test.cpp.o: ../list.h
 CMakeFiles/TMPS_STL_test.dir/test.cpp.o: ../test.cpp
 

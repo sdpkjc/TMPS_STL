@@ -6,7 +6,7 @@
 #include <new>      // placement new
 #include <cstddef>  // prtdiff_t, size_t
 
-namespace TMPS_STL{
+namespace TMPS{
 	template<typename T>
 	class allocator{
 	public:

@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/zhaoyanxiao/dev/devSTL/alloc.cpp
-alloc.h
-/Users/zhaoyanxiao/dev/devSTL/alloc.h
-
 /Users/zhaoyanxiao/dev/devSTL/alloc.h
 cstdlib
 -
@@ -22,6 +18,20 @@ new
 cstddef
 -
 
+/Users/zhaoyanxiao/dev/devSTL/iterator.h
+cstddef
+-
+
+/Users/zhaoyanxiao/dev/devSTL/list.h
+alloc.h
+/Users/zhaoyanxiao/dev/devSTL/alloc.h
+cstddef
+-
+allocator.h
+/Users/zhaoyanxiao/dev/devSTL/allocator.h
+iterator.h
+/Users/zhaoyanxiao/dev/devSTL/iterator.h
+
 /Users/zhaoyanxiao/dev/devSTL/test.cpp
 iostream
 -
@@ -31,4 +41,6 @@ memory
 -
 vector
 -
+list.h
+/Users/zhaoyanxiao/dev/devSTL/list.h
 
