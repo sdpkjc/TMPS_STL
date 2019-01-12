@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/Users/zhaoyanxiao/dev/devSTL/algorithm.h
+iterator.h
+/Users/zhaoyanxiao/dev/devSTL/iterator.h
+functional.h
+/Users/zhaoyanxiao/dev/devSTL/functional.h
+
 /Users/zhaoyanxiao/dev/devSTL/alloc.h
 cstdlib
 -
@@ -18,6 +24,8 @@ new
 cstddef
 -
 
+/Users/zhaoyanxiao/dev/devSTL/functional.h
+
 /Users/zhaoyanxiao/dev/devSTL/iterator.h
 cstddef
 -
@@ -29,6 +37,14 @@ cstddef
 -
 allocator.h
 /Users/zhaoyanxiao/dev/devSTL/allocator.h
+iterator.h
+/Users/zhaoyanxiao/dev/devSTL/iterator.h
+algorithm.h
+/Users/zhaoyanxiao/dev/devSTL/algorithm.h
+reverseIterator.h
+/Users/zhaoyanxiao/dev/devSTL/reverseIterator.h
+
+/Users/zhaoyanxiao/dev/devSTL/reverseIterator.h
 iterator.h
 /Users/zhaoyanxiao/dev/devSTL/iterator.h
 
@@ -44,5 +60,7 @@ vector
 list.h
 /Users/zhaoyanxiao/dev/devSTL/list.h
 list
+-
+iterator
 -
 

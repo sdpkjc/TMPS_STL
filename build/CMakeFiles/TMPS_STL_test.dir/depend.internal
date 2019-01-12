@@ -5,8 +5,11 @@ CMakeFiles/TMPS_STL_test.dir/alloc.cpp.o
  /Users/zhaoyanxiao/dev/devSTL/alloc.cpp
  /Users/zhaoyanxiao/dev/devSTL/alloc.h
 CMakeFiles/TMPS_STL_test.dir/test.cpp.o
+ /Users/zhaoyanxiao/dev/devSTL/algorithm.h
  /Users/zhaoyanxiao/dev/devSTL/alloc.h
  /Users/zhaoyanxiao/dev/devSTL/allocator.h
+ /Users/zhaoyanxiao/dev/devSTL/functional.h
  /Users/zhaoyanxiao/dev/devSTL/iterator.h
  /Users/zhaoyanxiao/dev/devSTL/list.h
+ /Users/zhaoyanxiao/dev/devSTL/reverseIterator.h
  /Users/zhaoyanxiao/dev/devSTL/test.cpp

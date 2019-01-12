@@ -4,9 +4,18 @@
 #include <vector>
 #include "list.h"
 #include <list>
+#include <iterator>
 
-using namespace std;
+// using namespace std;
+using std::cout;
+using std::endl;
+using std::cerr;
+using std::string;
+
+using namespace TMPS;
+
 namespace TMPS_Test{
+    enum ERROR_CODE{ACCEOTED,TEST_ERROR,OTHER_TEST_ERROR};
     class testA
     {
     public:
@@ -42,6 +51,8 @@ namespace TMPS_Test{
             test_cnt++;
             if(flag == result){
                 test_pass++;
+            }else{
+                cerr << test_cnt << " ERROR!" << endl;
             }
         }
         void print()
@@ -144,7 +155,6 @@ namespace TMPS_Test{
 
     };
 
-
     class ListTest{
     private:
         TMPS::list<int> testList;
@@ -153,7 +163,7 @@ namespace TMPS_Test{
         int test_pass;
 
     private:
-        bool test_clear()
+        ERROR_CODE test_clear()
         {
             testList.clear();
             int arr[] = {10,9,8,7,6,5,4,3,2,1};
@@ -161,19 +171,20 @@ namespace TMPS_Test{
             for( int i = 0; i < sizeof(arr)/sizeof(int); i++){
                 testList.push_front(arr[i]);
             }
-            bool re = true;
+            ERROR_CODE re = ACCEOTED;
+            
             if(testList.begin() == testList.end()){
-                re = false;
+                re = TEST_ERROR;
             }
 
             testList.clear();
             if(testList.begin() != testList.end()){
-                re = false;
+                re = OTHER_TEST_ERROR;
             }       
             return re;
         }
 
-        bool test_push_back()
+        ERROR_CODE test_push_back()
         {
             testList.clear();
             int arr[] = {1,2,3,4,5,6,7,8,9,10};
@@ -188,19 +199,19 @@ namespace TMPS_Test{
             for( TMPS::list<int>::iterator it = testList.begin(); it != testList.end() && index < arrSize; it++,index++){
                 // cout << *it << endl;
                 if(*it != arr[index]){
-                    return false;
+                    return TEST_ERROR;
                 }
             }
             
     
             if(index != arrSize){
-                return false;
+                return TEST_ERROR;
             }
 
-            return true;
+            return ACCEOTED;
         }
 
-        bool test_pop_back()
+        ERROR_CODE test_pop_back()
         {
             testList.clear();
             int arr[] = {1,2,3,4,5,6,7,8,9,10};
@@ -208,7 +219,18 @@ namespace TMPS_Test{
             for( int i = 0; i < arrSize; i++){
                 testList.push_back(arr[i]);
             }
-            
+
+            int index = 0;
+            for( TMPS::list<int>::iterator it = testList.begin(); it != testList.end() && index < arrSize; it++,index++){
+                // cout << *it << endl;
+                if(*it != arr[index]){
+                    return OTHER_TEST_ERROR;
+                }
+            }
+            if(index != arrSize){
+                return OTHER_TEST_ERROR;
+            }
+
             for( int i = 0; i < arrSize; i++){
                 // for( TMPS::list<int>::iterator it = testList.begin(); it != testList.end(); it++){
                 //     cout << *it << " ";
@@ -220,12 +242,12 @@ namespace TMPS_Test{
             // TMPS::list<int>::iterator it = testList.begin();
             // cout << *it << endl;
             if(testList.begin() != testList.end()){
-                return false;
+                return TEST_ERROR;
             }
-            return true;
+            return ACCEOTED;
         }
 
-        bool test_push_front()
+        ERROR_CODE test_push_front()
         {
             testList.clear();
             int arr[] = {10,9,8,7,6,5,4,3,2,1};
@@ -238,17 +260,17 @@ namespace TMPS_Test{
             for( TMPS::list<int>::iterator it = testList.begin(); it != testList.end() && index >= 0; it++,index--){
                 if(*it != arr[index]){
                     // cout << *it << endl;
-                    return false;
+                    return TEST_ERROR;
                 }
             }
             
             if(index != -1){
-                return false;
+                return TEST_ERROR;
             }
 
-            return true;
+            return ACCEOTED;
         }
-        bool test_pop_front()
+        ERROR_CODE test_pop_front()
         {
             testList.clear();
             int arr[] = {10,9,8,7,6,5,4,3,2,1};
@@ -257,6 +279,19 @@ namespace TMPS_Test{
                 testList.push_front(arr[i]);
             }
             
+
+            int index = arrSize - 1;
+            for( TMPS::list<int>::iterator it = testList.begin(); it != testList.end() && index >= 0; it++,index--){
+                if(*it != arr[index]){
+                    // cout << *it << endl;
+                    return OTHER_TEST_ERROR;
+                }
+            }
+            
+            if(index != -1){
+                return OTHER_TEST_ERROR;
+            }
+
             for( int i = 0; i < arrSize; i++){
                 // for( TMPS::list<int>::iterator it = testList.begin(); it != testList.end(); it++){
                 //     cout << *it << " ";
@@ -268,13 +303,12 @@ namespace TMPS_Test{
             // TMPS::list<int>::iterator it = testList.begin();
             // cout << *it << endl;
             if(testList.begin() != testList.end()){
-                return false;
+                return TEST_ERROR;
             }
-            return true;
+            return ACCEOTED;
         }
 
-
-        bool test_insert()
+        ERROR_CODE test_insert()
         {
             testList.clear();
 
@@ -291,7 +325,7 @@ namespace TMPS_Test{
             it = testList.insert(it,2);
             if(*it != 2){
                 // cout << "2222" << endl;
-                return false;
+                return TEST_ERROR;
             }
             // 0 1 2 3 4
             it = testList.begin();
@@ -299,21 +333,23 @@ namespace TMPS_Test{
                 // cout << *it << " "<< i << endl;
                 if(*it != i){
                     // cout << *it << i << endl;
-                    return false;
+                    return TEST_ERROR;
                 }    
             }
 
-            return true;
+            return ACCEOTED;
         }
         void print()
         {
             cout << testName << " " << test_pass << "/" << test_cnt << " (" << (double)test_pass/(double)test_cnt*100 << "%) passed." << endl;
         }
-        void test_bool(bool flag,bool result)
+        void test_bool(ERROR_CODE result)
         {
             test_cnt++;
-            if(flag == result){
+            if(ACCEOTED == result){
                 test_pass++;
+            }else{
+                cerr << "X: " << test_cnt << " ERROR!, ERROR_CODE = " << result << endl;
             }
         }
     public:
@@ -323,12 +359,13 @@ namespace TMPS_Test{
 
         void test()
         {
-            test_bool(true,test_clear());
-            test_bool(true,test_push_front());
-            test_bool(true,test_pop_front());
-            test_bool(true,test_push_back());
-            test_bool(true,test_pop_back());
-            test_bool(true,test_insert());
+            test_bool(test_clear());
+            test_bool(test_push_front());
+            test_bool(test_pop_front());
+            test_bool(test_push_back());
+            test_bool(test_pop_back());
+            test_bool(test_insert());
+
             // test_bool(true,test_push_pop());
             // test_bool(true,test_vecTestA_push_back());
             // test_bool(true,test_vecTestA_pop_back());        
@@ -341,12 +378,113 @@ namespace TMPS_Test{
 }
 
 
+
+
+
+
+
+
+
+
+class A{
+public:
+    int a,b;
+    A(){}
+    A(int i):a(i){ cout << i << endl;}
+    A(const A& x):a(x.a){cout << "copy " << a << endl;}
+    A(const A&& x):a(x.a){cout << "copy&& " << a << endl;}
+    
+    void f()
+    {
+        // A x = A(1);
+    }
+    bool operator==(const A& other)const{
+        return a == other.a;
+    }
+};
+
 int main()
 {   
     TMPS_Test::AllocatorTest tv;
     tv.test();
     TMPS_Test::ListTest lt;
     lt.test();
+
+    // std::list<int> xxx;
+    // std::list<int>::iterator it = xxx.begin();
+    // xxx.push_back(1);
+    // xxx.push_back(2);
+    // xxx.push_back(3);
+    // cout << xxx.size() << endl;
+
+    // xxx.erase(xxx.begin(),xxx.begin());
+    // cout << xxx.size() << endl;
+    // std::list<int>::const_iterator aaa = xxx.begin();
+
+    // cout << *aaa << "  sss" << endl;
+    // // *aaa = 2;
+    // cout << *aaa << "  sss" << endl;
+
+    // TMPS::list<int> xlt;
+    // xlt.push_back(1);
+    // xlt.push_back(2);
+    // xlt.push_back(3);
+    
+    // TMPS::list<int>::const_iterator xlci = xlt.begin();
+    
+    // cout << "Test_const  " << *xlci << endl;
+    // // *xlci = 2;
+    
+    // cout << "Test_const  " << *xlci << endl;
+
+    // TMPS::list<A> xlt_class;
+
+    // xlt_class.push_back(A(1));
+    // xlt_class.push_back(A(2));
+    // xlt_class.push_back(A(3));
+    // TMPS::list<A>::const_iterator xlci_class = xlt_class.begin();
+    // // xlci_class->a = 1;
+
+    // TMPS::list<A> xlt_class_B;
+    // xlt_class_B.push_back(A(1));
+    // xlt_class_B.push_back(A(2));
+    // xlt_class_B.push_back(A(3));
+    // xlt_class_B.push_back(A(4));
+    // xlt_class_B.push_back(A(5));
+    // xlt_class_B.push_back(A(6));
+
+    // TMPS::list<A>::iterator itxx;
+
+    // for( itxx = xlt_class_B.begin(); itxx != xlt_class_B.end(); itxx++){
+    //     cout << itxx->a << endl;
+    // }
+    // xlt_class_B.reverse();
+    // cout << endl << endl;
+    // for( itxx = xlt_class_B.begin(); itxx != xlt_class_B.end(); itxx++){
+    //     cout << itxx->a << endl;
+    // }
+    // if(xlt_class == xlt_class_B){
+
+    // }
+    // swap(xlt_class,xlt_class_B);
+    
+    // cout << endl << sizeof(std::list<A>) << endl << sizeof(TMPS::list<A>) << endl;
+    
+    // TMPS::list<A> xx;
+    // xx.push_back(A(1));
+    // xx.push_back(A(2));
+    // xx.push_back(A(3));
+    // xx.push_back(A(4));
+    // xx.push_back(A(5));
+    
+
+    // for( TMPS::list<A>::iterator itxx = xx.begin(); itxx != xx.end(); itxx++){
+    //     cout << itxx->a << endl;
+    // }
+    // cout << endl;
+    // for( TMPS::list<A>::reverse_iterator itxx = xx.rend(); itxx != xx.rbegin(); itxx++){
+    //     cout << itxx->a << endl;
+    // }
 
     return 0;
 }
