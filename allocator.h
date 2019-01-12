@@ -7,49 +7,49 @@
 #include <cstddef>  // prtdiff_t, size_t
 
 namespace TMPS{
-	template<typename T, typename Alloc = alloc>
-	class allocator{
-	public:
-		typedef T			value_type;
-		typedef T*			pointer;
-		typedef const T*	const_pointer;
-		typedef T&			reference;
-		typedef const T&	const_reference;
-		typedef size_t		size_type;
-		typedef ptrdiff_t	difference_type;
-	public:
-		static value_type *allocate(){
-			return static_cast<pointer>(Alloc::allocate(sizeof(value_type)));
-		}
-		static pointer allocate(size_type n){
-			if (0 == n) return 0;
-			return static_cast<pointer>(Alloc::allocate(sizeof(value_type) * n));
-		}
+    template<typename T, typename Alloc = alloc>
+    class allocator{
+    public:
+        typedef T			value_type;
+        typedef T*			pointer;
+        typedef const T*	const_pointer;
+        typedef T&			reference;
+        typedef const T&	const_reference;
+        typedef size_t		size_type;
+        typedef ptrdiff_t	difference_type;
+    public:
+        static value_type *allocate(){
+            return static_cast<pointer>(Alloc::allocate(sizeof(value_type)));
+        }
+        static pointer allocate(size_type n){
+            if (0 == n) return 0;
+            return static_cast<pointer>(Alloc::allocate(sizeof(value_type) * n));
+        }
 
-		static void deallocate(pointer ptr){
-			Alloc::deallocate(static_cast<void *>(ptr), sizeof(value_type));
-		}
-		static void deallocate(pointer ptr, size_type n){
-			if (0 == n) return;
-			Alloc::deallocate(static_cast<void *>(ptr), sizeof(value_type) * n);
-		}
+        static void deallocate(pointer ptr){
+            Alloc::deallocate(static_cast<void *>(ptr), sizeof(value_type));
+        }
+        static void deallocate(pointer ptr, size_type n){
+            if (0 == n) return;
+            Alloc::deallocate(static_cast<void *>(ptr), sizeof(value_type) * n);
+        }
 
-		static void construct(pointer ptr){
-			new(ptr)value_type();
-		}
-		static void construct(pointer ptr, const_reference value){
-			new(ptr)value_type(value);
-		}
+        static void construct(pointer ptr){
+            new(ptr)value_type();
+        }
+        static void construct(pointer ptr, const_reference value){
+            new(ptr)value_type(value);
+        }
 
-		static void destroy(T *ptr){
-			ptr->~T();
-		}
-		static void destroy(pointer first, pointer last){
-			for ( ; first != last; ++first){
-				first->~value_type();
-			}
-		}
-	};
+        static void destroy(T *ptr){
+            ptr->~T();
+        }
+        static void destroy(pointer first, pointer last){
+            for ( ; first != last; ++first){
+                first->~value_type();
+            }
+        }
+    };
 }
 
 #endif /* __ALLOCATOR_H__ */
